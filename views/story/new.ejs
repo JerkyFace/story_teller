@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+<div class="container container-text">
+    <form action="/stories" method="POST">
+        <div class="form-group">
+            <input class="form-control form-control-lg title" type="text" placeholder="Title" name="storyTitle">
+            <br>
+            <input class="form-control form-control-lg title" type="text" placeholder="Cover url" name="img">
+            <br>
+            <textarea id="mytextarea" placeholder="Tell us your story" name="storyContent"></textarea>
+        </div>
+        <button class="btn btn-secondary btn-lg btn-block">SHARE</button>
+    </form>
+</div>
+
+<% include ../partials/footer %>

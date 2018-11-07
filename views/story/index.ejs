@@ -1,0 +1,108 @@
+<% include ../partials/header %>
+
+<div class="container container-text">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <%firstColumn.forEach(element => {%>
+                        <article class="card mb-4 main-cards">
+                            <header class="card-header">
+                                <div class="card-meta">
+                                    <span class="time"><%=element.time%> <strong><a href="#"> by <%=element.author.username%></strong></a></span>
+                                </div>
+                                <a href="/stories/<%=element._id%>">
+                                    <h4 class="card-title">
+                                        <%=element.title%>
+                                    </h4>
+                                </a>
+                            </header>
+                            <a href="/stories/<%=element._id%>">
+                                <img src="<%=element.image%>" alt="img" class="card-img">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <%-element.content.substring(0, 200) + "..."%>
+                                </p>
+                            </div>
+                        </article> 
+                    <%});%>
+                </div>
+                <div class="col-md-6">
+                    <%secondColumn.forEach(element => {%>
+                        <article class="card mb-4 main-cards">
+                            <header class="card-header">
+                                <div class="card-meta">
+                                    <span class="time"><%=element.time%> <strong><a href="#"> by <%=element.author.username%></strong></a></span>
+                                </div>
+                                <a href="/stories/<%=element._id%>">
+                                    <h4 class="card-title">
+                                        <%=element.title%>
+                                    </h4>
+                                </a>
+                            </header>
+                            <a href="/stories/<%=element._id%>">
+                                <img src="<%=element.image%>" alt="img" class="card-img">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <%-element.content.substring(0, 200) + "..."%>
+                                </p>
+                            </div>
+                        </article>
+                    <%});%>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 ml-auto">
+            <aside class="sidebar">
+                <div class="card md-4 popular">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            INFO
+                        </h4>
+                        <p> 
+                            For those who have something to say
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            <aside class="sidebar sidebar-sticky">
+                <div class="card md-4">
+                    <div class="card-body">
+                        <h4 class="card-title">TAGS</h4>
+                        <a href="#" class="btn btn-light btn-sm mb-1">politics</a>
+                        <a href="#" class="btn btn-light btn-sm mb-1">IT</a>
+                        <a href="#" class="btn btn-light btn-sm mb-1">sports</a>
+                        <a href="#" class="btn btn-light btn-sm mb-1">nature</a>
+                        <a href="#" class="btn btn-light btn-sm mb-1">photography</a>
+                    </div>
+                </div>
+                <div class="card md-4 popular">
+                    <div class="card-body">
+                        <h4 class="card-title">POPULAR POSTS</h4>
+                        <hr>
+                        <% popularArray.forEach(element => {%>
+                            <article class="card mb-4 popular-posts">
+                                <header class="card-header">
+                                    <a href="/stories/<%=element._id%>">
+                                        <h4 class="card-title">
+                                            <%=element.title%>
+                                        </h4>
+                                    </a>
+                                </header>
+                                <a href="/stories/<%=element._id%>">
+                                    <img src="<%=element.image%>" alt="img" class="card-img">
+                                </a>
+                            </article>
+                            <hr>
+                        <%});%>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

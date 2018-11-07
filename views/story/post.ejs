@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<div class="container container-text">
+    <h1 class="h1"><%=foundStory.title%></h1>
+    <hr>
+    <br>
+    <%if(foundStory.image){%>
+        <img class="img-fluid rounded mx-auto d-block" src="<%=foundStory.image%>" alt="">
+    <%}%>
+    <br>
+    <hr>
+    <p>
+        <%-foundStory.content%>
+    </p>
+    <br>
+    <a href="/stories/<%=foundStory._id%>/edit" class="btn btn-secondary btn-lg btn-comment">Edit Post</a>
+    <hr>
+    <div class="comment-section">
+        <a href="/stories/<%=foundStory._id%>/comments/new">
+            <button class="btn btn-secondary btn-lg btn-comment">Add a comment</button>
+        </a>
+        <h2 class="headings">Comments: </h2> 
+        <br>
+        <%foundStory.comments.forEach(element => {%>
+            <h4 class="headings">from: <%=element.author.username%></h4>
+            <p><%-element.text%></p>
+            <hr>
+        <%});%>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

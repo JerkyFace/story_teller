@@ -1,0 +1,289 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    /* fallback for old browsers 
+    background: -webkit-linear-gradient(to right, #FFFFFF, #bebcba);
+    /* Chrome 10-25, Safari 5.1-6 
+    background: linear-gradient(to right, #FFFFFF, #bebcba);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+    font-family: 'Roboto', sans-serif; */
+}
+
+/* 
+    font-family: 'Cabin Sketch', cursive;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Fredericka the Great', cursive;
+ */
+
+p {
+    font-family: 'Special Elite', cursive;
+    text-align: justify;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.editorBody {
+    font-family: 'Special Elite';
+    font-size: 18px;
+}
+
+.popular-posts .card-title {
+    font-size: 1em;
+    text-align: center;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+aside {
+    margin-bottom: 0.2em;
+}
+
+.h1 {
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 700;
+    font-size: 2.6em;
+}
+
+.h2 {
+    font-family: 'Fredericka the Great', cursive;
+    font-weight: 700;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.headings {
+    font-family: 'Special Elite', cursive;
+    font-weight: bold;
+}
+
+.card {
+    /* box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.41); */
+    background: transparent;
+    border: none;
+}
+
+.card-header {
+    /* box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.41); */
+    background: transparent;
+    border: none;
+}
+
+.card-meta {
+    margin-bottom: 0.7em;
+}
+
+.img-fluid {
+    border-radius: 8px;
+}
+
+.btn-comment {
+    margin: 0 0 2em 0;
+}
+
+.img-thumbnail {
+    background: transparent;
+    border: none;
+}
+
+.mce-container {
+    border-radius: 8px;
+}
+
+.navbar.scrolled {
+    background: #ffffff;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.index-title {
+    text-align: center !important;
+}
+
+.time {
+    font-size: 0.8em;
+    font-family: 'Special Elite', cursive;
+}
+
+.auth-link {
+    margin-right: 1em;
+}
+
+.menu-items {
+    font-size: 1.2em;
+    font-family: 'Special Elite', cursive;
+    font-weight: 600;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.card-title {
+    font-family: 'Special Elite', cursive;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container-text {
+    margin-top: 3em;
+}
+
+.col {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin: 1em;
+    padding: 1em;
+    border-radius: 8px;
+}
+
+.comment-section {
+    margin-top: 5em;
+}
+
+.register-form {
+    width: 40%;
+}
+
+.story,
+.title {
+    border: none;
+    background: transparent;
+    transition: none;
+}
+
+.story {
+    resize: none;
+    overflow: auto;
+}
+
+.form-control:focus {
+    background: transparent;
+    outline: none;
+    box-shadow: inset 1px 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 80px;
+}
+
+.btn-secondary {
+    background: transparent;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    border: none;
+    font-family: 'Special Elite', cursive;
+    color: black;
+    opacity: 0.7 !important;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.4);
+    border: none;
+    outline: none;
+    color: black;
+}
+
+::placeholder {
+    font-size: 1.1em;
+    font-family: 'Special Elite', cursive;
+    font-weight: 600;
+    opacity: 0.5 !important;
+}
+
+.main-cards {
+    background: rgba(197, 197, 197, 0.1);
+    box-shadow: 0 0 9px 1px rgba(70, 70, 70, 0.5);
+    padding: 0.5em;
+}
+
+.popular {
+    background: rgba(197, 197, 197, 0.1);
+    box-shadow: 0 0 9px 1px rgba(70, 70, 70, 0.5);
+    padding: 0.5em;
+}
+
+#footer {
+    padding-top: 100px;
+    margin-top: 7em;
+}
+
+#footer .container {
+    text-align: center;
+}
+
+#footer .footer-copyright {
+    margin-bottom: 35px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 18px;
+}
+
+#footer a {
+    color: #282b2d;
+    font-size: 18px;
+    font-family: 'Special Elite', cursive;
+}
+
+#footer li {
+    display: inline-block;
+    margin: 0px 15px;
+    line-height: 2;
+}
+
+#footer .footer-social {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#footer .fa {
+    font-size: 36px;
+    margin-right: 15px;
+    margin-left: 20px;
+    background-color: white;
+    color: #d0d0d0;
+    border-radius: 51%;
+    padding: 10px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    line-height: 43px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+#footer .fa-facebook:hover {
+    color: #2b55ff;
+}
+
+#footer .fa-facebook:focus {
+    color: #2b55ff;
+}
+
+#footer .fa-vk:hover {
+    color: rgb(143, 143, 255);
+}
+
+#footer .fa-vk:focus {
+    color: rgb(143, 143, 255);
+}
