@@ -1,20 +1,27 @@
 # Simple social news and discussion platform
 
+## Technologies
+* Node.js
+* Express.js
+* MongoDB
+* Passport.js
+* EJS
+
 ## Scope
 * Here you can sign up, share a post or leave a comment.
 * Posts and comments are editable by the author
 * User must be signed in, to see content
 
 ## Checklist:
-* ~~ Authorization ~~
-* ~~ Add post ~~
-* ~~ Add comments ~~
-* ~~ Edit posts ~~
-* Edit only by the author
-* Userpage
-* Subscription
-* Tags
-* Popular posts
+- [x] Authorization
+- [x] Add post
+- [x] Add comments
+- [x] Edit posts
+- [ ] Edit only by the author
+- [ ] Userpage
+- [ ] Subscription
+- [ ] Tags
+- [ ] Popular posts
 
 ### run npm install
 to install all the dependencies
