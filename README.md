@@ -6,6 +6,7 @@
 * MongoDB
 * Passport.js
 * EJS
+* Bootstrap 4
 
 ## Scope
 * Here you can sign up, share a post or leave a comment.
