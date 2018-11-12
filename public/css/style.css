@@ -197,6 +197,26 @@ aside {
     color: black;
 }
 
+.btn-edit:hover {
+    background: rgba(75, 163, 102, 0.6);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px 3px rgba(75, 163, 102, 0.6);
+    border: none;
+    outline: none;
+}
+
+.btn-edit{
+    margin: 1em 0;
+}
+
+.btn-delete:hover {
+    background: rgba(155, 86, 86, 0.6);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px 3px rgba(155, 86, 86, 0.6);
+    border: none;
+    outline: none;
+}
+
 ::placeholder {
     font-size: 1.1em;
     font-family: 'Special Elite', cursive;

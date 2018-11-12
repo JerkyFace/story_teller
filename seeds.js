@@ -1,6 +1,4 @@
-var mongoose = require('mongoose'),
-    Story = require('./models/story'),
-    Comment = require('./models/comments');
+var Story = require('./models/story');
 
 var defaultPosts = [
     {

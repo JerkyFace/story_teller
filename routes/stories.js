@@ -1,4 +1,4 @@
-var express = require('express'),
+let express = require('express'),
     router = express.Router(),
     Story = require('../models/story');
 
@@ -12,13 +12,13 @@ router.get('/', (req, res) => {
         time: 'desc'
     }).exec((error, story) => {
         if (!error) {
-            var firstColumn = story.filter((value, index, array) => {
+            let firstColumn = story.filter((value, index) => {
                 return index % 2 == 0;
             });
-            var secondColumn = story.filter((value, index, array) => {
+            let secondColumn = story.filter((value, index) => {
                 return index % 2 != 0;
             });
-            var popularArray = story.filter((value, index, array) => {
+            let popularArray = story.filter((value, index) => {
                 return index < 2;
             });
             res.render('story/index', {
@@ -118,9 +118,19 @@ router.put('/:id', isAuthorized, (req, res) => {
     });
 });
 
-//destroy
-router.delete('/:id', (req, res) => {
-
+//destroy route
+router.delete('/:id', isAuthorized, (req, res) => {
+    let id = req.params.id,
+    author = req.session.passport.user;
+    Story.findByIdAndDelete(id, (error, foundStory) => {
+        if (!error) {
+            console.log(`${foundStory.title} deleted by ${author}`);
+            res.redirect('/stories');
+        } else {
+            console.log(error);
+            res.redirect(`/stories/${id}`);
+        }
+    });
 });
 
 function isAuthorized(req, res, next) {

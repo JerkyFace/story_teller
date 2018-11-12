@@ -9,7 +9,10 @@
             <br>
             <textarea id="mytextarea" placeholder="Tell us your story" name="storyContent"><%-foundStory.content%></textarea>
         </div>
-        <button class="btn btn-secondary btn-lg btn-block">EDIT</button>
+        <button class="btn btn-secondary btn-lg btn-block btn-edit">EDIT</button>
+    </form>
+    <form action="/stories/<%=foundStory._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-secondary btn-lg btn-block btn-delete">DELETE</button>
     </form>
 </div>
 
