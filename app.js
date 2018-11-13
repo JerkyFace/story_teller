@@ -49,8 +49,7 @@ mongoose.connect(`mongodb://${urls.mongo}/storyTeller`, {
 });
 mongoose.set('useFindAndModify', false);
 
-seedDB();
-
+//seedDB();
 //userpage tbc 
 app.get('/im', (req, res) => {
     res.render('user/userpage');

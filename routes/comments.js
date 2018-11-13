@@ -1,5 +1,7 @@
 var express = require('express'),
-    router = express.Router({mergeParams: true}),
+    router = express.Router({
+        mergeParams: true
+    }),
     Comment = require('../models/comments'),
     Story = require('../models/story');
 

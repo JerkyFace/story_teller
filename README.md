@@ -18,7 +18,7 @@
 - [x] Add post
 - [x] Add comments
 - [x] Edit posts
-- [ ] Edit only by the author
+- [x] Authentication (Edit & Delete only by the author)
 - [ ] Userpage
 - [ ] Subscription
 - [ ] Tags

@@ -13,8 +13,10 @@
         <%-foundStory.content%>
     </p>
     <br>
-    <a href="/stories/<%=foundStory._id%>/edit" class="btn btn-secondary btn-lg btn-comment btn-edit">Edit Post</a>
+    <%if (currentUser && foundStory.author.id.equals(currentUser._id)){%>
+        <a href="/stories/<%=foundStory._id%>/edit" class="btn btn-secondary btn-lg btn-comment btn-edit">Edit Post</a>
     <hr>
+    <%}%>
     <div class="comment-section">
         <a href="/stories/<%=foundStory._id%>/comments/new">
             <button class="btn btn-secondary btn-lg btn-comment">Add a comment</button>

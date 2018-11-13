@@ -76,14 +76,12 @@ router.get('/:id', isAuthorized, (req, res) => {
             });
         } else {
             console.log(error);
-            res.send('Something went wrong. Redirecting...');
-            setTimeout(res.redirect('/', 3000));
         }
     });
 });
 
 //edit route
-router.get('/:id/edit', isAuthorized, (req, res) => {
+router.get('/:id/edit', checkStoryOwnership, (req, res) => {
     Story.findById(req.params.id, (error, foundStory) => {
         if (!error) {
             res.render('story/edit', {
@@ -97,7 +95,7 @@ router.get('/:id/edit', isAuthorized, (req, res) => {
 });
 
 //update route
-router.put('/:id', isAuthorized, (req, res) => {
+router.put('/:id', checkStoryOwnership, (req, res) => {
     let id = req.params.id,
         title = req.body.storyTitle,
         content = req.body.storyContent,
@@ -119,9 +117,9 @@ router.put('/:id', isAuthorized, (req, res) => {
 });
 
 //destroy route
-router.delete('/:id', isAuthorized, (req, res) => {
+router.delete('/:id', checkStoryOwnership, (req, res) => {
     let id = req.params.id,
-    author = req.session.passport.user;
+        author = req.session.passport.user;
     Story.findByIdAndDelete(id, (error, foundStory) => {
         if (!error) {
             console.log(`${foundStory.title} deleted by ${author}`);
@@ -133,12 +131,31 @@ router.delete('/:id', isAuthorized, (req, res) => {
     });
 });
 
+// midware
 function isAuthorized(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
         console.log('access denied');
         res.redirect('/login');
+    }
+}
+
+function checkStoryOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Story.findById(req.params.id, (error, foundStory) => {
+            if(!error){
+                if(foundStory.author.id.equals(req.user._id)){
+                    next();
+                }
+                else{
+                    res.redirect('/stories');
+                }
+            }
+            else{
+                res.redirect('back');
+            }
+        });
     }
 }
 
