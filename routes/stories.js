@@ -1,6 +1,7 @@
 let express = require('express'),
     router = express.Router(),
-    Story = require('../models/story');
+    Story = require('../models/story'),
+    middleware = require('../middleware');
 
 
 // default image if not chosen
@@ -35,7 +36,7 @@ router.get('/', (req, res) => {
 });
 
 // add story handler
-router.post('/', isAuthorized, (req, res) => {
+router.post('/', middleware.isAuthorized, (req, res) => {
     let title = req.sanitize(req.body.storyTitle),
         content = req.sanitize(req.body.storyContent),
         img = req.body.img || defaultPicture;
@@ -64,11 +65,11 @@ router.post('/', isAuthorized, (req, res) => {
     res.redirect('/stories');
 });
 
-router.get('/new', isAuthorized, (req, res) => {
+router.get('/new', middleware.isAuthorized, (req, res) => {
     res.render('story/new', {});
 });
 
-router.get('/:id', isAuthorized, (req, res) => {
+router.get('/:id', middleware.isAuthorized, (req, res) => {
     Story.findById(req.params.id).populate('comments').exec((error, foundStory) => {
         if (!error) {
             res.render('story/post', {
@@ -81,7 +82,7 @@ router.get('/:id', isAuthorized, (req, res) => {
 });
 
 //edit route
-router.get('/:id/edit', checkStoryOwnership, (req, res) => {
+router.get('/:id/edit', middleware.checkStoryOwnership, (req, res) => {
     Story.findById(req.params.id, (error, foundStory) => {
         if (!error) {
             res.render('story/edit', {
@@ -95,7 +96,7 @@ router.get('/:id/edit', checkStoryOwnership, (req, res) => {
 });
 
 //update route
-router.put('/:id', checkStoryOwnership, (req, res) => {
+router.put('/:id', middleware.checkStoryOwnership, (req, res) => {
     let id = req.params.id,
         title = req.body.storyTitle,
         content = req.body.storyContent,
@@ -117,7 +118,7 @@ router.put('/:id', checkStoryOwnership, (req, res) => {
 });
 
 //destroy route
-router.delete('/:id', checkStoryOwnership, (req, res) => {
+router.delete('/:id', middleware.checkStoryOwnership, (req, res) => {
     let id = req.params.id,
         author = req.session.passport.user;
     Story.findByIdAndDelete(id, (error, foundStory) => {
@@ -131,32 +132,5 @@ router.delete('/:id', checkStoryOwnership, (req, res) => {
     });
 });
 
-// midware
-function isAuthorized(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    } else {
-        console.log('access denied');
-        res.redirect('/login');
-    }
-}
-
-function checkStoryOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Story.findById(req.params.id, (error, foundStory) => {
-            if(!error){
-                if(foundStory.author.id.equals(req.user._id)){
-                    next();
-                }
-                else{
-                    res.redirect('/stories');
-                }
-            }
-            else{
-                res.redirect('back');
-            }
-        });
-    }
-}
 
 module.exports = router;
