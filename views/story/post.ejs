@@ -25,7 +25,10 @@
         <br>
         <%foundStory.comments.forEach(element => {%>
             <h4 class="headings">from: <%=element.author.username%></h4>
-            <a href="/stories/<%=foundStory._id%>/comments/<%=element._id%>/edit">тык</a>
+            <%if (currentUser && element.author.id.equals(currentUser._id)){%>
+                <a href="/stories/<%=foundStory._id%>/comments/<%=element._id%>/edit">edit comment</a>
+            <hr>
+            <%}%>
             <p><%-element.text%></p>
             <hr>
         <%});%>

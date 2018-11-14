@@ -40,7 +40,7 @@ router.post('/', isAuthorized, (req, res) => {
 });
 
 //edit comment
-router.get('/:comment_id/edit', (req, res) => {
+router.get('/:comment_id/edit', checkCommentOwnership, (req, res) => {
     Comment.findById(req.params.comment_id, (error, foundComment) => {
         if (!error) {
             let story_id = req.params.id;
@@ -55,7 +55,7 @@ router.get('/:comment_id/edit', (req, res) => {
     });
 });
 
-router.put('/:comment_id', (req, res) => {
+router.put('/:comment_id', checkCommentOwnership, (req, res) => {
     Comment.findByIdAndUpdate(req.params.comment_id, {
         text: req.body.commentText
     }, error => {
@@ -69,9 +69,9 @@ router.put('/:comment_id', (req, res) => {
 });
 
 //delete comment
-router.delete('/:comment_id', (req, res) => {
+router.delete('/:comment_id', checkCommentOwnership, (req, res) => {
     Comment.findByIdAndDelete(req.params.comment_id, error => {
-        if(!error){
+        if (!error) {
             console.log('comment deleted');
             res.redirect('/stories/' + req.params.id);
         } else {
@@ -81,13 +81,29 @@ router.delete('/:comment_id', (req, res) => {
     });
 });
 
-
+//midware
 function isAuthorized(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
         console.log('access denied');
         res.redirect('/login');
+    }
+}
+
+function checkCommentOwnership(req, res, next) {
+    if (req.isAuthenticated()) {
+        Comment.findById(req.params.comment_id, (error, foundComment) => {
+            if (!error) {
+                if (foundComment.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect('/stories');
+                }
+            } else {
+                res.redirect('back');
+            }
+        });
     }
 }
 
