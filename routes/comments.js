@@ -39,6 +39,36 @@ router.post('/', isAuthorized, (req, res) => {
     res.redirect('/stories/' + req.params.id);
 });
 
+//edit comment
+router.get('/:comment_id/edit', (req, res) => {
+    Comment.findById(req.params.comment_id, (error, foundComment) => {
+        if (!error) {
+            let story_id = req.params.id;
+            res.render('comments/edit', {
+                story_id: story_id,
+                comment: foundComment
+            });
+        } else {
+            console.log(error);
+            res.redirect('back');
+        }
+    });
+});
+
+router.put('/:comment_id', (req, res) => {
+    Comment.findByIdAndUpdate(req.params.comment_id, {
+        text: req.body.commentText
+    }, error => {
+        if (!error) {
+            res.redirect('/stories/' + req.params.id);
+        } else {
+            console.log(error);
+            res.redirect('back');
+        }
+    });
+});
+
+
 function isAuthorized(req, res, next) {
     if (req.isAuthenticated()) {
         return next();

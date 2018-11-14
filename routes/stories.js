@@ -106,7 +106,7 @@ router.put('/:id', checkStoryOwnership, (req, res) => {
         image: img
     }
 
-    Story.findByIdAndUpdate(id, dataToBeUpdated, (error, foundStory) => {
+    Story.findByIdAndUpdate(id, dataToBeUpdated, error => {
         if (!error) {
             res.redirect(`/stories/${id}`);
         } else {

@@ -1,0 +1,12 @@
+<% include ../partials/header%>
+
+<div class="container container-text">
+    <form action="/stories/<%=story_id%>/comments/<%=comment._id%>?_method=PUT" method="POST">
+        <div class="form-group">
+            <textarea id="mytextarea" name="commentText" ><%=comment.text%></textarea>
+        </div>
+        <button class="btn btn-secondary btn-lg btn-block">Edit comment</button>
+    </form>
+</div>
+
+<% include ../partials/footer%>
