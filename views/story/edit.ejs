@@ -3,7 +3,7 @@
 <div class="container container-text">
     <form action="/stories/<%=foundStory._id%>?_method=PUT" method="POST">
         <div class="form-group">
-            <input class="form-control form-control-lg title" type="text" placeholder="Title" name="storyTitle" value="<%-foundStory.title%>">
+            <input class="form-control form-control-lg title" type="text" placeholder="Title" name="storyTitle" value="<%-foundStory.title%>" required>
             <br>
             <input class="form-control form-control-lg title" type="text" placeholder="Cover url" name="img" value="<%-foundStory.image%>">
             <br>

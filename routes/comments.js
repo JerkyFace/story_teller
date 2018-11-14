@@ -68,6 +68,19 @@ router.put('/:comment_id', (req, res) => {
     });
 });
 
+//delete comment
+router.delete('/:comment_id', (req, res) => {
+    Comment.findByIdAndDelete(req.params.comment_id, error => {
+        if(!error){
+            console.log('comment deleted');
+            res.redirect('/stories/' + req.params.id);
+        } else {
+            console.log(error);
+            res.redirect('/stories/' + req.params.id);
+        }
+    });
+});
+
 
 function isAuthorized(req, res, next) {
     if (req.isAuthenticated()) {
@@ -77,5 +90,6 @@ function isAuthorized(req, res, next) {
         res.redirect('/login');
     }
 }
+
 
 module.exports = router;

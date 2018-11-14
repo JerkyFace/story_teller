@@ -24,6 +24,10 @@
 - [ ] Tags
 - [ ] Popular posts
 
+## To be fixed
+- [ ] textarea validation
+
+
 ### run npm install
 to install all the dependencies
 

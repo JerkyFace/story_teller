@@ -25,7 +25,8 @@
         <br>
         <%foundStory.comments.forEach(element => {%>
             <h4 class="headings">from: <%=element.author.username%></h4>
-            <p><%-element.text%> <a href="/stories/<%=foundStory._id%>/comments/<%=element._id%>/edit">тык</a></p>
+            <a href="/stories/<%=foundStory._id%>/comments/<%=element._id%>/edit">тык</a>
+            <p><%-element.text%></p>
             <hr>
         <%});%>
     </div>

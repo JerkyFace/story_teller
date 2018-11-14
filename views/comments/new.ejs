@@ -3,7 +3,7 @@
 <div class="container container-text">
     <form action="/stories/<%=id%>/comments" method="POST">
         <div class="form-group">
-            <textarea id="mytextarea" name="commentText"></textarea>
+            <textarea id="mytextarea" name="commentText" minlength="3" maxlength="220"></textarea>
         </div>
         <button class="btn btn-secondary btn-lg btn-block">Add comment</button>
     </form>
