@@ -8,7 +8,7 @@ middlewareObj.isAuthorized = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     } else {
-        console.log('access denied');
+        req.flash('error', 'You must be signed in');
         res.redirect('/login');
     }
 };
@@ -20,9 +20,11 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
                 if (foundComment.author.id.equals(req.user._id)) {
                     next();
                 } else {
+                    req.flash('error', 'Access denied');
                     res.redirect('/stories');
                 }
             } else {
+                req.flash('error', 'Something went wrong');
                 res.redirect('back');
             }
         });
@@ -36,9 +38,11 @@ middlewareObj.checkStoryOwnership = (req, res, next) => {
                 if (foundStory.author.id.equals(req.user._id)) {
                     next();
                 } else {
+                    req.flash('error', 'Access denied');
                     res.redirect('/stories');
                 }
             } else {
+                req.flash('error', 'Something went wrong');
                 res.redirect('back');
             }
         });

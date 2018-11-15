@@ -5,6 +5,7 @@ let express = require('express'),
     expressSession = require('express-session'),
     LocalStrategy = require('passport-local'),
     sanitizer = require('express-sanitizer'),
+    flash = require('connect-flash-plus'),
     methodOverride = require('method-override'),
     User = require('./models/users'),
     urls = require('./common/urls'),
@@ -27,10 +28,13 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 app.use(methodOverride('_method'));

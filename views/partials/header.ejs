@@ -60,7 +60,17 @@
             </div>
         </div>
     </nav>
-    <hr>
+    <%if (error && error.length > 0){%>
+        <div class="alert alert-dark" role="alert">
+            <h3 class="h3"><%=error%></h3> 
+        </div>
+    <%}%> 
+    <%if (success && success.length > 0){%>
+        <div class="alert alert-dark" role="alert">
+            <h3 class="h3"><%=success%></h3> 
+        </div>
+    <%}%>
+   
     <script>
         $(function () {
             $(document).scroll(function () {

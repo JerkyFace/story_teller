@@ -33,18 +33,20 @@ router.post('/', middleware.isAuthorized, (req, res) => {
                 if (!error) {
                     foundStory.comments.push(comment);
                     foundStory.save();
-                    console.log(comment);
+                    req.flash('success', 'Comment successfully added');
+                    res.redirect('/stories/' + req.params.id);
                 } else {
                     console.log(error);
+                    req.flash('error', 'Something went wrong');
                     res.redirect('/stories');
                 }
             });
         } else {
             console.log(error);
+            req.flash('error', 'Something went wrong');
             res.redirect('/stories');
         }
     });
-    res.redirect('/stories/' + req.params.id);
 });
 
 //edit comment
@@ -58,6 +60,7 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, (req, res) => 
             });
         } else {
             console.log(error);
+            req.flash('error', 'Something went wrong');
             res.redirect('back');
         }
     });
@@ -68,9 +71,11 @@ router.put('/:comment_id', middleware.checkCommentOwnership, (req, res) => {
         text: req.body.commentText
     }, error => {
         if (!error) {
+            req.flash('success', 'Your comment updated');
             res.redirect('/stories/' + req.params.id);
         } else {
             console.log(error);
+            req.flash('error', 'Something went wrong');
             res.redirect('back');
         }
     });
@@ -80,10 +85,11 @@ router.put('/:comment_id', middleware.checkCommentOwnership, (req, res) => {
 router.delete('/:comment_id', middleware.checkCommentOwnership, (req, res) => {
     Comment.findByIdAndDelete(req.params.comment_id, error => {
         if (!error) {
-            console.log('comment deleted');
+            req.flash('success', 'Your comment succesfully deleted');
             res.redirect('/stories/' + req.params.id);
         } else {
             console.log(error);
+            req.flash('error', 'Something went wrong');
             res.redirect('/stories/' + req.params.id);
         }
     });
