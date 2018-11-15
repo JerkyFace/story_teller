@@ -8,7 +8,6 @@ let express = require('express'),
     methodOverride = require('method-override'),
     User = require('./models/users'),
     urls = require('./common/urls'),
-    seedDB = require('./seeds'),
     app = express();
 
 
@@ -49,8 +48,6 @@ mongoose.connect(`mongodb://${urls.mongo}/storyTeller`, {
 });
 mongoose.set('useFindAndModify', false);
 
-//seedDB();
-//userpage tbc 
 app.get('/im', (req, res) => {
     res.render('user/userpage');
 });

@@ -236,6 +236,22 @@ aside {
     padding: 0.5em;
 }
 
+.post-tags {
+    text-align: center;
+}
+
+.post-tags ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2em;
+}
+
+.post-tags li {
+    display: inline-block;
+    margin: 0px 15px;
+    line-height: 2;
+}
+
 #footer {
     padding-top: 100px;
     margin-top: 7em;

@@ -15,7 +15,7 @@ var storySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
     }],
-    time: String,
+    time: String
 });
 
 module.exports = mongoose.model("Story", storySchema);

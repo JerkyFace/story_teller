@@ -14,6 +14,7 @@ router.get('/new', middleware.isAuthorized, (req, res) => {
     });
 });
 
+//add comment handler
 router.post('/', middleware.isAuthorized, (req, res) => {
     Story.findById(req.params.id, (error, foundStory) => {
         if (!error) {
@@ -22,7 +23,12 @@ router.post('/', middleware.isAuthorized, (req, res) => {
                 author: {
                     id: req.user._id,
                     username: req.user.username,
-                }
+                },
+                time: new Date().toLocaleDateString([], {
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric'
+                })
             }, (error, comment) => {
                 if (!error) {
                     foundStory.comments.push(comment);
