@@ -16,7 +16,7 @@ middlewareObj.isAuthorized = (req, res, next) => {
 middlewareObj.checkCommentOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
         Comment.findById(req.params.comment_id, (error, foundComment) => {
-            if (!error) {
+            if (!error && foundComment) {
                 if (foundComment.author.id.equals(req.user._id)) {
                     next();
                 } else {
@@ -25,7 +25,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
                 }
             } else {
                 req.flash('error', 'Something went wrong');
-                res.redirect('back');
+                res.redirect('/stories/' + req.params.id);
             }
         });
     }
@@ -34,7 +34,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
 middlewareObj.checkStoryOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
         Story.findById(req.params.id, (error, foundStory) => {
-            if (!error) {
+            if (!error && foundStory) {
                 if (foundStory.author.id.equals(req.user._id)) {
                     next();
                 } else {
@@ -43,7 +43,7 @@ middlewareObj.checkStoryOwnership = (req, res, next) => {
                 }
             } else {
                 req.flash('error', 'Something went wrong');
-                res.redirect('back');
+                res.redirect('/stories');
             }
         });
     }

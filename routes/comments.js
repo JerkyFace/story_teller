@@ -51,6 +51,12 @@ router.post('/', middleware.isAuthorized, (req, res) => {
 
 //edit comment
 router.get('/:comment_id/edit', middleware.checkCommentOwnership, (req, res) => {
+    Story.findById(req.params.id, (error, foundStory) => {
+        if(error || !foundStory){
+            req.flash('error', 'Story not found');
+            return res.redirect('/stories');
+        }
+    });
     Comment.findById(req.params.comment_id, (error, foundComment) => {
         if (!error) {
             let story_id = req.params.id;
@@ -61,7 +67,7 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, (req, res) => 
         } else {
             console.log(error);
             req.flash('error', 'Something went wrong');
-            res.redirect('back');
+            res.redirect('/stories');
         }
     });
 });
@@ -69,14 +75,14 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, (req, res) => 
 router.put('/:comment_id', middleware.checkCommentOwnership, (req, res) => {
     Comment.findByIdAndUpdate(req.params.comment_id, {
         text: req.body.commentText
-    }, error => {
-        if (!error) {
+    }, (error, comment) => {
+        if (!error && comment) {
             req.flash('success', 'Your comment updated');
             res.redirect('/stories/' + req.params.id);
         } else {
             console.log(error);
             req.flash('error', 'Something went wrong');
-            res.redirect('back');
+            res.redirect('/stories');
         }
     });
 });

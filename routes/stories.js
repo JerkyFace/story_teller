@@ -29,8 +29,6 @@ router.get('/', (req, res) => {
             });
         } else {
             console.log(error);
-            res.send('Something went wrong. Redirecting...');
-            setTimeout(res.redirect('/', 3000));
         }
     });
 });
@@ -71,11 +69,13 @@ router.get('/new', middleware.isAuthorized, (req, res) => {
 
 router.get('/:id', middleware.isAuthorized, (req, res) => {
     Story.findById(req.params.id).populate('comments').exec((error, foundStory) => {
-        if (!error) {
+        if (!error && foundStory) {
             res.render('story/post', {
                 foundStory: foundStory
             });
         } else {
+            req.flash('error', 'Story not found');
+            res.redirect('/stories');
             console.log(error);
         }
     });
