@@ -20,6 +20,8 @@
 - [x] Edit posts
 - [x] Authentication (Edit & Delete only by the author)
 - [ ] Userpage
+- [ ] Administration
+- [ ] Forum
 - [ ] Subscription
 - [ ] Tags
 - [ ] Popular posts

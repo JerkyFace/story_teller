@@ -14,6 +14,7 @@ let express = require('express'),
 
 let commentRoutes = require('./routes/comments'),
     storiesRoutes = require('./routes/stories'),
+    userRoutes = require('./routes/user'),
     authRoutes = require('./routes/auth');
 
 app.set('view engine', 'ejs');
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 app.use(methodOverride('_method'));
 
 app.use(authRoutes);
+app.use(userRoutes);
 app.use('/stories/:id/comments', commentRoutes);
 app.use('/stories', storiesRoutes);
 

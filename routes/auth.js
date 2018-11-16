@@ -1,6 +1,7 @@
 var express = require('express'),
     passport = require('passport'),
     router = express.Router(),
+    middleware = require('../middleware/index'),
     User = require('../models/users');
 
 router.get('/', (req, res) => {
@@ -21,7 +22,7 @@ router.post('/register', (req, res) => {
         if (!error) {
             passport.authenticate('local')(req, res, () => {
                 req.flash('success', `Wellcome, ${user.username}!`);
-                res.redirect('/stories');
+                res.redirect(`/user/${user._id}`);
             });
         } else {
             console.log(error.message);
@@ -30,6 +31,7 @@ router.post('/register', (req, res) => {
         }
     });
 });
+
 
 //login routes
 router.get('/login', (req, res) => {

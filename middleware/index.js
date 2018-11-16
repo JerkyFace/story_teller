@@ -1,5 +1,6 @@
 let Story = require('../models/story'),
-    Comment = require('../models/comments');
+    Comment = require('../models/comments'),
+    User = require('../models/users');
 
 
 let middlewareObj = {};
@@ -30,6 +31,12 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
         });
     }
 };
+
+// middlewareObj.checkPageOwnership = (req, res, next) => {
+//     if(req.isAuthenticated()) {
+//         User.findById(req.params.id)
+//     }
+// };
 
 middlewareObj.checkStoryOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {

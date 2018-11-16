@@ -40,7 +40,7 @@
                 <ul class="navbar-nav ml-auto">
                    <%if (currentUser){%>
                         <li>
-                            <a class="btn btn-light btn-sm mb-1 auth-link" href="#"><span class="menu-items">Hi, <%=currentUser.username%></span></a>
+                            <a class="btn btn-light btn-sm mb-1 auth-link" href="/user/<%=currentUser._id%>"><span class="menu-items">Hi, <%=currentUser.username%></span></a>
                         </li>
                         <li class="nav-item">
                                 <a class="btn btn-light btn-sm mb-1 auth-link" href="/stories/new"><span class="menu-items">Add story</span></a>
