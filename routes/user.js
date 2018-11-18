@@ -6,7 +6,7 @@ var express = require('express'),
     Story = require('../models/story');
 
 
-router.get('/user/:user_id', (req, res) => {
+router.get('/user/:user_id', middleware.isAuthorized, (req, res) => {
     User.findById(req.params.user_id, (error, foundUser) => {
         if (!error && foundUser) {
             Story.find({
@@ -32,7 +32,7 @@ router.get('/user/:user_id', (req, res) => {
 });
 
 //update profile
-router.put('/user/:user_id', (req, res) => {
+router.put('/user/:user_id', middleware.checkPageOwnership, (req, res) => {
     let id = req.params.user_id;
     let newData = {
         firstName: req.body.firstName,

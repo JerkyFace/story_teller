@@ -7,9 +7,11 @@
                 <li class="nav-item">
                     <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
                 </li>
+                <%if (currentUser && user._id.equals(currentUser._id)){%>
                 <li class="nav-item">
                     <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
                 </li>
+                <%}%>
             </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
@@ -38,6 +40,7 @@
                     </div>
                     <!--/row-->
                 </div>
+                <%if (currentUser && user._id.equals(currentUser._id)){%>
                 <div class="tab-pane" id="edit">
                     <form role="form" action="/user/<%=user._id%>?_method=PUT" method="POST">
                         <div class="form-group row">
@@ -67,6 +70,7 @@
                         <button class="btn btn-secondary btn-lg btn-block btn-edit">Update profile</button>
                     </form>
                 </div>
+                <%}%>
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">

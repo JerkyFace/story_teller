@@ -32,11 +32,27 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
     }
 };
 
-// middlewareObj.checkPageOwnership = (req, res, next) => {
-//     if(req.isAuthenticated()) {
-//         User.findById(req.params.id)
-//     }
-// };
+//page ownership
+
+middlewareObj.checkPageOwnership = (req, res, next) => {
+    if(req.isAuthenticated()) {
+        let id = req.params.user_id
+        User.findById(req.params.id, (error, foundUser) => {
+            if(!error && foundUser) {
+                if(foundUser._id.equals(req.user._id)){
+                    next();
+                } else {
+                    req.flash('error', 'Access denied');
+                    res.redirect(`/user/${id}`);
+                }
+            }
+            else{
+                req.flash('error', 'Something went wrong');
+                res.redirect(`/user/${id}`);
+            }
+        });
+    }
+};
 
 middlewareObj.checkStoryOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
