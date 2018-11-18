@@ -32,6 +32,12 @@ h1 {
     font-size: 18px;
 }
 
+.jumbotron {
+    margin-top: 3em;
+    box-shadow: 0 0 9px 1px rgba(70, 70, 70, 0.5);
+    background: rgba(179, 179, 179, 0.1);
+}
+
 .popular-posts .card-title {
     font-size: 1em;
     text-align: center;
