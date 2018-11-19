@@ -12,8 +12,9 @@ middlewareObj.isAuthorized = (req, res, next) => {
         req.flash('error', 'You must be signed in');
         res.redirect('/login');
     }
-};
+}; 
 
+//check if current user is the author of the comment
 middlewareObj.checkCommentOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
         Comment.findById(req.params.comment_id, (error, foundComment) => {
@@ -33,8 +34,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
     }
 };
 
-//page ownership
-
+//Check if current user own profile page
 middlewareObj.checkPageOwnership = (req, res, next) => {
     if(req.isAuthenticated()) {
         let id = req.params.user_id
@@ -56,6 +56,7 @@ middlewareObj.checkPageOwnership = (req, res, next) => {
     }
 };
 
+//check if current user is the author of storypage
 middlewareObj.checkStoryOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
         Story.findById(req.params.id, (error, foundStory) => {

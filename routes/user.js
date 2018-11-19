@@ -1,5 +1,4 @@
 var express = require('express'),
-    passport = require('passport'),
     router = express.Router(),
     middleware = require('../middleware/index'),
     User = require('../models/users'),

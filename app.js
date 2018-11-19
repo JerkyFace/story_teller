@@ -15,7 +15,8 @@ let express = require('express'),
 let commentRoutes = require('./routes/comments'),
     storiesRoutes = require('./routes/stories'),
     userRoutes = require('./routes/user'),
-    authRoutes = require('./routes/auth');
+    authRoutes = require('./routes/auth'),
+    adminRoutes = require('./routes/admin');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -42,6 +43,7 @@ app.use(methodOverride('_method'));
 
 app.use(authRoutes);
 app.use(userRoutes);
+app.use(adminRoutes);
 app.use('/stories/:id/comments', commentRoutes);
 app.use('/stories', storiesRoutes);
 
