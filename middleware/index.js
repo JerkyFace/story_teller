@@ -25,6 +25,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
                     res.redirect('/stories');
                 }
             } else {
+                console.log(error);
                 req.flash('error', 'Something went wrong');
                 res.redirect('/stories/' + req.params.id);
             }
@@ -37,7 +38,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
 middlewareObj.checkPageOwnership = (req, res, next) => {
     if(req.isAuthenticated()) {
         let id = req.params.user_id
-        User.findById(req.params.id, (error, foundUser) => {
+        User.findById(id, (error, foundUser) => {
             if(!error && foundUser) {
                 if(foundUser._id.equals(req.user._id)){
                     next();
@@ -47,6 +48,7 @@ middlewareObj.checkPageOwnership = (req, res, next) => {
                 }
             }
             else{
+                console.log(error.message);
                 req.flash('error', 'Something went wrong');
                 res.redirect(`/user/${id}`);
             }
@@ -65,6 +67,7 @@ middlewareObj.checkStoryOwnership = (req, res, next) => {
                     res.redirect('/stories');
                 }
             } else {
+                console.log(error);
                 req.flash('error', 'Something went wrong');
                 res.redirect('/stories');
             }

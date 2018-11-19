@@ -46,7 +46,7 @@ router.put('/user/:user_id', middleware.checkPageOwnership, (req, res) => {
             req.flash('success', "Successfully updated.");
             return res.redirect(`/user/${id}`);
         } else {
-            console.log(error.message);
+            console.log(error);
             req.flash('error', "Unable to update profile.");
             return res.redirect(`/user/${id}`);
         }
