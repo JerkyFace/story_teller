@@ -19,7 +19,7 @@
 - [x] Add comments
 - [x] Edit posts
 - [x] Authentication (Edit & Delete only by the author)
-- [ ] Userpage
+- [x] Userpage
 - [ ] Administration
 - [ ] Forum
 - [ ] Subscription
