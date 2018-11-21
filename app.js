@@ -8,9 +8,9 @@ let express = require('express'),
     flash = require('connect-flash-plus'),
     methodOverride = require('method-override'),
     User = require('./models/users'),
-    urls = require('./common/urls'),
     app = express();
 
+const PORT = process.env.PORT || 5000;
 
 let commentRoutes = require('./routes/comments'),
     storiesRoutes = require('./routes/stories'),
@@ -51,15 +51,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-mongoose.connect(`mongodb://${urls.mongo}/storyTeller`, {
+mongoose.connect(`mongodb://JerkFace:GBGBcmrf321@ds113454.mlab.com:13454/storyteller`, {
     useNewUrlParser: true
 });
 mongoose.set('useFindAndModify', false);
 
-app.get('/im', (req, res) => {
-    res.render('user/userpage');
-});
-
-app.listen(urls.port, urls.ip, () => {
+app.listen(PORT, () => {
     console.log('server started');
 });
