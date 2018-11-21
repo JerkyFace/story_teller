@@ -21,7 +21,7 @@
         </ul>
     </div>
     <br>
-    <%if (currentUser && foundStory.author.id.equals(currentUser._id)){%>
+    <%if (currentUser && (foundStory.author.id.equals(currentUser._id) || currentUser.isAdmin)){%>
         <a href="/stories/<%=foundStory._id%>/edit" class="btn btn-secondary btn-lg btn-comment btn-edit">Edit Post</a>
         <hr>
     <%}%>
@@ -42,7 +42,7 @@
                         <%-element.text%>
                     </p>
                     <time class="text-muted"><%-element.time%></time>
-                    <%if (currentUser && element.author.id.equals(currentUser._id)){%>
+                    <%if (currentUser && (element.author.id.equals(currentUser._id) || currentUser.isAdmin)){%>
                         <a class="float-right" href="/stories/<%=foundStory._id%>/comments/<%=element._id%>/edit">
                         <span class="fa fa-edit">
                         </span>

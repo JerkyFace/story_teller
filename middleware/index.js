@@ -40,7 +40,7 @@ middlewareObj.checkPageOwnership = (req, res, next) => {
         let id = req.params.user_id
         User.findById(id, (error, foundUser) => {
             if(!error && foundUser) {
-                if(foundUser._id.equals(req.user._id)){
+                if(foundUser._id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 } else {
                     req.flash('error', 'Access denied');
@@ -61,7 +61,7 @@ middlewareObj.checkStoryOwnership = (req, res, next) => {
     if (req.isAuthenticated()) {
         Story.findById(req.params.id, (error, foundStory) => {
             if (!error && foundStory) {
-                if (foundStory.author.id.equals(req.user._id)) {
+                if (foundStory.author.id.equals(req.user._id) || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash('error', 'Access denied');

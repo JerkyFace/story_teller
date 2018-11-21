@@ -1,5 +1,20 @@
 <% include ../partials/header %>
 
-    
+<div class="container">
+    <div class="row">
+        <table class="table table-sm table-hover table-striped admin-table">
+            <tbody>          
+                <%foundStories.forEach(element =>{%>
+                    <tr>
+                        <td>
+                            <strong><a href="/user/<%=element.author.id%>"><%=element.author.username%></a> : <a href="/stories/<%=element._id%>"><%=element.title%></a></strong>
+                        </td>
+                    </tr>
+                <%});%>
+            </tbody>
+        </table>  
+    </div>
+</div>
 
 <% include ../partials/footer %>
+

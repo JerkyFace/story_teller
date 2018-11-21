@@ -7,8 +7,15 @@ let User = require('../models/users'),
 
 router.get('/adminpanel', middleware.isAuthorized, (req, res) => {
     if (req.user.isAdmin) {
-        res.render('admin/admin', {
-            user: req.user
+        Story.find({}, (error, foundStories) => {
+            if (!error && foundStories) {
+                return res.render('admin/admin', {
+                    foundStories: foundStories
+                });
+            } else {
+                console.log(error);
+                return res.redirect('/stories');
+            }
         });
     } else {
         return res.redirect('/');

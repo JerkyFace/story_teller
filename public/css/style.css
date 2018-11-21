@@ -155,6 +155,11 @@ aside {
     border-radius: 8px;
 }
 
+.admin-table {
+    margin-top: 2em;
+    font-size: 0.8em;
+}
+
 .comment-section {
     margin-top: 5em;
 }
@@ -213,7 +218,7 @@ aside {
     outline: none;
 }
 
-.btn-edit{
+.btn-edit {
     margin: 1em 0;
 }
 

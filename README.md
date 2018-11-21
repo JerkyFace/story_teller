@@ -20,7 +20,7 @@
 - [x] Edit posts
 - [x] Authentication (Edit & Delete only by the author)
 - [x] Userpage
-- [ ] Administration
+- [x] Administration
 - [ ] Forum
 - [ ] Subscription
 - [ ] Tags
