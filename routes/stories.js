@@ -1,5 +1,6 @@
 let express = require('express'),
     router = express.Router(),
+    moment = require('moment'),
     Story = require('../models/story'),
     middleware = require('../middleware');
 
@@ -46,11 +47,7 @@ router.post('/', middleware.isAuthorized, (req, res) => {
         title: title,
         content: content,
         image: img,
-        time: new Date().toLocaleDateString([], {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric'
-        })
+        time: moment(new Date()).format("DD-MMM-YYYY, h:mm")
     }, (error, result) => {
         if (!error) {
             console.log('created');
