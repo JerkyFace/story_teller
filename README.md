@@ -1,4 +1,6 @@
 # Simple social news and discussion platform
+available here:
+https://blooming-scrubland-41904.herokuapp.com/
 
 ## Technologies
 * Node.js
