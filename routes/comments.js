@@ -1,4 +1,5 @@
 let express = require('express'),
+    moment = require('moment'),
     router = express.Router({
         mergeParams: true
     }),
@@ -24,11 +25,7 @@ router.post('/', middleware.isAuthorized, (req, res) => {
                     id: req.user._id,
                     username: req.user.username,
                 },
-                time: new Date().toLocaleDateString([], {
-                    year: 'numeric',
-                    month: 'numeric',
-                    day: 'numeric'
-                })
+                time: moment(new Date()).format("DD-MMM-YYYY, h:mm")
             }, (error, comment) => {
                 if (!error) {
                     foundStory.comments.push(comment);
